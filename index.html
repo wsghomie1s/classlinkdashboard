@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -46,8 +46,6 @@ body::before {
   z-index: -1;
 }
 .container { max-width: 1500px; margin: 0 auto; }
-
-/* Brand */
 .brand {
   text-align: center;
   font-size: 0.9rem;
@@ -67,13 +65,7 @@ body::before {
   margin-bottom: 1.5rem;
   text-shadow: 0 0 20px rgba(108,140,255,0.3);
 }
-
-/* Search */
-.search-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
+.search-wrapper { display: flex; justify-content: center; margin-bottom: 2rem; }
 .search-bar {
   display: flex;
   gap: 0.5rem;
@@ -104,17 +96,13 @@ body::before {
   font-weight: 600;
   cursor: pointer;
   transition: background var(--transition);
-}
-.search-bar button:hover { background: var(--accent-hover); }
-
-/* Tabs */
-.tabs {
   display: flex;
-  justify-content: center;
-  gap: 0.8rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
 }
+.search-bar button svg { width: 1em; height: 1em; }
+.search-bar button:hover { background: var(--accent-hover); }
+.tabs { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 2rem; flex-wrap: wrap; }
 .tab {
   padding: 0.7rem 1.4rem;
   border-radius: 40px;
@@ -134,17 +122,10 @@ body::before {
 .tab:hover { background: var(--surface-hover); }
 .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 20px rgba(108,140,255,0.4); }
 .tab svg { width: 1.2em; height: 1.2em; }
-
 .content-section { display: none; }
 .content-section.active { display: block; animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
-
-/* Grid */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1.2rem;
-}
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.2rem; }
 .card {
   background: var(--surface);
   backdrop-filter: var(--glass-blur);
@@ -160,60 +141,29 @@ body::before {
   gap: 0.6rem;
   overflow: hidden;
 }
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.8);
-  background: var(--surface-hover);
-}
-.poster {
-  width: 100%;
-  aspect-ratio: 2/3;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #1e1e28;
-  position: relative;
-}
-.poster img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s;
-}
+.card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.8); background: var(--surface-hover); }
+.poster { width: 100%; aspect-ratio: 2/3; border-radius: 10px; overflow: hidden; background: #1e1e28; position: relative; }
+.poster img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
 .card:hover .poster img { transform: scale(1.05); }
-.poster .fallback-icon {
-  position: absolute;
-  inset: 0;
+.poster .fallback-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+.card h3 { font-size: 0.9rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card .meta { font-size: 0.75rem; color: var(--text-secondary); }
+.card button.play-btn {
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-}
-.card h3 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.card .meta {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-}
-.card button {
-  padding: 0.5rem 0.8rem;
-  border-radius: 8px;
-  border: none;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 500;
-  cursor: pointer;
-  font-size: 0.85rem;
+  margin: 0 auto;
   transition: background var(--transition);
-  margin-top: auto;
 }
-.card button:hover { background: var(--accent-hover); }
-
-/* Player Modal */
+.card button.play-btn svg { width: 18px; height: 18px; fill: white; }
+.card button.play-btn:hover { background: var(--accent-hover); }
 #playerModal {
   display: none;
   position: fixed;
@@ -236,13 +186,7 @@ body::before {
   transition: transform 0.2s;
 }
 #playerModal .close-player:hover { transform: scale(1.2); }
-
-/* Settings */
-.settings-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
+.settings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
 .setting-card {
   background: var(--surface);
   backdrop-filter: var(--glass-blur);
@@ -251,7 +195,8 @@ body::before {
   border-radius: var(--radius-lg);
   padding: 1.5rem;
 }
-.setting-card h3 { margin-bottom: 1rem; font-size: 1.1rem; }
+.setting-card h3 { margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+.setting-card h3 svg { width: 1.2em; height: 1.2em; }
 .setting-card select, .setting-card input[type="text"], .setting-card input[type="file"] {
   width: 100%;
   padding: 0.8rem 1rem;
@@ -272,13 +217,13 @@ body::before {
   cursor: pointer;
   font-weight: 600;
   transition: background var(--transition);
-}
-.setting-card button:hover { background: var(--accent-hover); }
-.theme-buttons {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 0.4rem;
 }
+.setting-card button svg { width: 1em; height: 1em; }
+.setting-card button:hover { background: var(--accent-hover); }
+.theme-buttons { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .theme-btn {
   padding: 0.6rem 1rem;
   border-radius: 8px;
@@ -291,35 +236,13 @@ body::before {
 }
 .theme-btn:hover { background: var(--surface-hover); }
 .theme-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-/* Loading */
-.loading {
-  text-align: center;
-  padding: 2rem;
-  color: var(--text-secondary);
-  font-size: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--border);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
+.loading { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 1rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
-
-/* Responsive */
 @media (max-width: 768px) {
   .clock-display { font-size: 2.5rem; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.8rem; }
@@ -335,8 +258,11 @@ body::before {
 
   <div class="search-wrapper">
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search movies, shows, anime, games...">
-      <button onclick="globalSearch()">Search</button>
+      <input type="text" id="searchInput" placeholder="Search TV, movies, shows, anime, games...">
+      <button onclick="globalSearch()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </button>
     </div>
   </div>
 
@@ -345,77 +271,93 @@ body::before {
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.97 16.97L6.18 15.18C4.34 17.02 3.5 18.5 3.5 19.5C3.5 20.88 4.62 22 6 22C7 22 8.48 21.16 10.32 19.32L8.53 17.53C8.21 17.21 7.71 17 7.25 17C7 17 7 17 7.97 16.97M10 2C9.45 2 9 2.45 9 3V5H15V3C15 2.45 14.55 2 14 2H10M6 6C4.34 6 3 7.34 3 9V13C3 14.66 4.34 16 6 16H18C19.66 16 21 14.66 21 13V9C21 7.34 19.66 6 18 6H6M6 8H18V14H6V8M14 10V12H16V10H14M15.5 20.5C16.88 20.5 18 19.38 18 18C18 17 17.16 15.48 15.32 13.64L13.53 15.43C15.69 17.58 16.5 18.5 16.5 19C16.5 19.28 16.28 19.5 16 19.5C15.5 19.5 14.5 18.66 12.64 16.82L10.85 18.61C12.71 20.47 14.21 21.5 15.5 21.5M15.5 21.5C17.43 21.5 19 19.93 19 18C19 16.9 18.1 15.61 16.5 14.11C14.9 15.61 14 16.9 14 18C14 19.38 15.12 20.5 16.5 20.5"/></svg>
       Games
     </div>
-    <div class="tab" data-tab="movies">🎬 Movies</div>
-    <div class="tab" data-tab="shows">📺 Shows</div>
-    <div class="tab" data-tab="anime">🌸 Anime</div>
+    <div class="tab" data-tab="tv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+      TV
+    </div>
     <div class="tab" data-tab="youtube">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       YouTube
     </div>
-    <div class="tab" data-tab="proxy">🌐 Proxy</div>
-    <div class="tab" data-tab="settings">⚙️ Settings</div>
+    <div class="tab" data-tab="proxy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Proxy
+    </div>
+    <div class="tab" data-tab="ai">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-3V6a4 4 0 0 0-4-4zM8 8v2m8-2v2"/></svg>
+      AI
+    </div>
+    <div class="tab" data-tab="settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </div>
   </div>
 
-  <!-- Games -->
   <div id="games" class="content-section active">
     <div class="grid" id="gameGrid"></div>
-    <div id="gameLoadMore" class="loading" style="display:none;">
-      <div class="spinner"></div> Loading more games...
+  </div>
+
+  <div id="tv" class="content-section">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <select id="tvFilter" onchange="filterTV()" style="padding:0.5rem 1rem; border-radius:20px; border:1px solid var(--border); background:var(--surface); color:var(--text);">
+        <option value="all">All</option>
+        <option value="movie">Movies</option>
+        <option value="tv">Shows</option>
+        <option value="anime">Anime</option>
+      </select>
     </div>
+    <div class="grid" id="tvGrid"></div>
   </div>
 
-  <!-- Movies -->
-  <div id="movies" class="content-section">
-    <div class="grid" id="movieGrid"></div>
-    <button id="movieLoadMore" class="theme-btn" style="margin:1rem auto; display:block;">Load More Movies</button>
-  </div>
-
-  <!-- Shows -->
-  <div id="shows" class="content-section">
-    <div class="grid" id="showGrid"></div>
-    <button id="showLoadMore" class="theme-btn" style="margin:1rem auto; display:block;">Load More Shows</button>
-  </div>
-
-  <!-- Anime -->
-  <div id="anime" class="content-section">
-    <div class="grid" id="animeGrid"></div>
-    <button id="animeLoadMore" class="theme-btn" style="margin:1rem auto; display:block;">Load More Anime</button>
-  </div>
-
-  <!-- YouTube -->
   <div id="youtube" class="content-section">
-    <div class="setting-card" style="max-width:700px; margin:0 auto; text-align:center;">
-      <h3>YouTube Proxy (Invidious)</h3>
-      <input type="text" id="ytSearch" placeholder="Search YouTube or paste video URL">
-      <button onclick="searchYouTube()">Search</button>
+    <div class="setting-card" style="max-width:800px; margin:0 auto; text-align:center;">
+      <h3><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> YouTube</h3>
+      <input type="text" id="ytSearch" placeholder="Search for videos, channels, or paste a YouTube URL">
+      <button onclick="searchYouTube()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </button>
       <div id="ytResults" class="grid" style="margin-top:1rem;"></div>
+      <div style="margin-top:1rem;">
+        <h4 style="margin-bottom:0.5rem;">Popular Videos</h4>
+        <div id="popularVideos" class="grid"></div>
+        <h4 style="margin:1rem 0 0.5rem;">Popular Shorts</h4>
+        <div id="popularShorts" class="grid"></div>
+      </div>
     </div>
   </div>
 
-  <!-- Proxy -->
   <div id="proxy" class="content-section">
     <div class="setting-card" style="max-width:700px; margin:0 auto;">
-      <h3>Web Proxy</h3>
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Web Proxy (DuckDuckGo)</h3>
       <div style="display:flex; gap:0.5rem;">
-        <input type="text" id="proxyUrl" placeholder="Enter URL (https://...)" style="flex:1;">
-        <button onclick="navigateProxy()">Go</button>
+        <input type="text" id="proxyUrl" placeholder="Enter URL or search query..." style="flex:1;">
+        <button onclick="navigateProxy()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 17 21 12 16 7"/><polyline points="21 12 9 12"/><polyline points="9 21 3 21 3 3 9 3"/></svg>
+          Go
+        </button>
       </div>
-      <select id="proxyService" style="margin-top:0.5rem;">
-        <option value="allorigins">AllOrigins</option>
-        <option value="corsproxy">CORS Proxy</option>
-        <option value="whateverorigin">Whatever Origin</option>
-      </select>
       <div id="proxyFrameContainer" style="margin-top:1rem; display:none;">
         <iframe id="proxyFrame" style="width:100%; height:70vh; border:none; border-radius:12px;"></iframe>
       </div>
     </div>
   </div>
 
-  <!-- Settings -->
+  <div id="ai" class="content-section">
+    <div class="setting-card" style="max-width:800px; margin:0 auto;">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-3V6a4 4 0 0 0-4-4zM8 8v2m8-2v2"/></svg> Novus AI (ChatGPT 6 Astra)</h3>
+      <div id="aiChatBox" style="height:400px; overflow-y:auto; background:rgba(0,0,0,0.2); border-radius:12px; padding:1rem; margin-bottom:1rem;">
+        <div style="color:var(--text-secondary);">AI: Hello! I'm Novus AI, based on ChatGPT 6 Astra. I can help with essays, math, geometry, algebra, and more. Ask me anything.</div>
+      </div>
+      <input type="text" id="aiInput" placeholder="Type your message..." style="width:100%; padding:0.8rem; border-radius:12px; border:1px solid var(--border); background:rgba(0,0,0,0.3); color:var(--text);">
+      <button onclick="sendAI()" style="margin-top:0.5rem; padding:0.7rem 1.5rem; border-radius:12px; border:none; background:var(--accent); color:#fff; cursor:pointer;">Send</button>
+    </div>
+  </div>
+
   <div id="settings" class="content-section">
     <div class="settings-grid">
       <div class="setting-card">
-        <h3>Search Engine</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Search Engine</h3>
         <select id="searchEngine">
           <option value="default">Local Search</option>
           <option value="duckduckgo">DuckDuckGo</option>
@@ -423,7 +365,7 @@ body::before {
         </select>
       </div>
       <div class="setting-card">
-        <h3>Theme</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg> Theme</h3>
         <div class="theme-buttons" id="themeButtons">
           <button class="theme-btn" data-theme="dark">Dark</button>
           <button class="theme-btn" data-theme="light">Light</button>
@@ -436,17 +378,22 @@ body::before {
         </div>
       </div>
       <div class="setting-card">
-        <h3>Custom Background</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><image x="2" y="2" width="20" height="20" xlink:href=""/><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Custom Background</h3>
         <input type="text" id="customVideoUrl" placeholder="YouTube video URL for background">
-        <button onclick="setCustomVideo()">Set Video BG</button>
+        <button onclick="setCustomVideo()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 3 6 15 21 15"/><polyline points="21 5 21 19 18 19"/><polyline points="3 19 6 15"/></svg>
+          Set Video BG
+        </button>
         <input type="file" id="customImageInput" accept="image/*">
-        <button onclick="setCustomImage()">Set Image BG</button>
+        <button onclick="setCustomImage()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Set Image BG
+        </button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Player Modal -->
 <div id="playerModal">
   <button class="close-player" onclick="closePlayer()">×</button>
   <iframe id="playerFrame" src="" allowfullscreen></iframe>
@@ -456,22 +403,19 @@ body::before {
 // ==================== CONSTANTS & STATE ====================
 const GAMES_JSON_URL = 'https://raw.githubusercontent.com/3kh0/3kh0.github.io/main/games.json';
 const TMDB_API_KEY = '15d2ea6d0dc1d476efbca3eba2b9bbfb';
-const IMDB_DATASET_URL = 'https://datasets.imdbws.com/title.basics.tsv.gz';
-const INVIDIOUS_API = 'https://invidious.f5.si/api/v1';
+const YOUTUBE_API_KEY = 'YOUR_YOUTUBE_API_KEY_HERE'; // ⚠️ Replace with your YouTube Data API v3 key
 
 let games = [];
-let movies = [];
-let shows = [];
-let anime = [];
-let currentMoviePage = 1;
-let currentShowPage = 1;
-let currentAnimePage = 1;
-let currentSource = 'flystream'; // default
+let currentSource = 'dulo'; // Now default source is dulo
+let currentMovie = null;
+let allTVItems = [];
+let filteredTVItems = [];
 
+// EMBED_SOURCES reordered with dulo.gd first
 const EMBED_SOURCES = [
+  { name: 'dulo', base: 'https://dulo.gd/embed/', type: 'path' },
   { name: 'flystream', base: 'https://flystream.net/embed/', type: 'path' },
   { name: 'cinera', base: 'https://cinera.cc/embed/', type: 'path' },
-  { name: 'dulo', base: 'https://dulo.gd/embed/', type: 'path' },
   { name: 'vidsrc.me', base: 'https://vidsrc.me/embed/', type: 'path' },
   { name: 'vidsrc.to', base: 'https://vidsrc.to/embed/', type: 'path' },
   { name: '2embed', base: 'https://www.2embed.to/embed/tmdb/', type: 'tmdb' },
@@ -483,15 +427,35 @@ const EMBED_SOURCES = [
   { name: 'autoembed', base: 'https://autoembed.co/movie/tmdb/', type: 'tmdb' }
 ];
 
-// ==================== UTILITY FUNCTIONS ====================
-function debounce(fn, delay) {
-  let timeout;
-  return function(...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => fn.apply(this, args), delay);
-  };
-}
+// ==================== REAL MANUAL GAMES FALLBACK ====================
+const REAL_GAME_SLUGS = [
+  "1", "10-more-bullets", "100ng", "12-minibattles", "1v1-lol", "2048", "3d-car-simulator", "3d-pong", "4th-and-goal-2014", "60-seconds-reatomized",
+  "8-ball-billiards-classic", "9-ball-pool", "achievement-unlocked", "adventure-capitalist", "age-of-war", "alien-invasion", "amateur-surgeon", "among-us",
+  "angry-birds", "animal-crossing", "aquapark-io", "asteroids", "astray", "avalanche", "backflip-diving", "basketball-stars", "battle-royale", "battlefield-1",
+  "bike-race", "bitcoin-clicker", "bloons-td-5", "bob-the-robber", "bomberman", "bonk-io", "boston-pizza", "boxing-random", "brave-little-knight",
+  "breakfast-run", "bubble-shooter", "bulk-up", "bullet-hero", "burnout-drift", "bus-simulator-ultimate", "cat-mario", "chicken-invaders", "chrome-dino",
+  "circus-charlie", "city-blocks", "clash-of-clans", "color-switch", "connect-4", "cookie-clicker", "crazy-taxi", "crossy-road", "cube-run",
+  "cut-the-rope", "cyber-tank", "dance-battle", "dark-souls", "dead-zed", "death-run-3d", "defend-the-castle", "desert-road", "dig-to-china",
+  "dino-bros", "doctor-acorn", "doodle-god", "doodle-jump", "dragon-ball-z", "drift-hunters", "duck-life", "dune", "earn-to-die", "eggy-car",
+  "electric-man-2", "endless-war", "escape-from-prison", "ev.io", "fall-guys", "fireboy-and-watergirl", "five-nights-at-freddys", "flappy-bird",
+  "fortnite", "fruit-ninja", "game-inside", "geometry-dash", "getting-over-it", "gold-miner", "grand-theft-auto", "granny", "gravity-guy",
+  "gun-mayhem", "happy-wheels", "hard-life", "head-soccer", "helicopter-game", "hole-io", "house-of-hazards", "impossible-quiz", "infinite-runner",
+  "jetpack-joyride", "just-fall", "kirby", "kitchen-scramble", "krunker-io", "learn-to-fly", "legend-of-zelda", "life-the-game", "little-alchemy",
+  "lol-beans", "madalin-stunt-cars-2", "mario-kart", "mega-man", "minecraft", "moto-x3m", "n-gon", "nascar-racing", "ninja-gaiden", "oh-hi",
+  "omnivore", "one-piece", "oregon-trail", "pacman", "paper-io", "papas-burgeria", "papas-cupcakeria", "papas-freezeria", "papas-pizzeria",
+  "papas-sushiria", "pokemon", "pong", "puzzle-ball", "qwop", "rabbit-samurai", "racing-fever", "retro-bowl", "rocket-league", "run-3",
+  "sandtrix", "shell-shockers", "shoot-rope", "slope", "snake", "soccer-skills", "sonic", "space-invaders", "stardew-valley", "stickman-hook",
+  "subway-surfers", "super-mario", "temple-run", "tetris", "the-final-earth", "the-impossible-quiz", "the-worlds-hardest-game", "tiny-fishing",
+  "tower-defense", "trackmania", "tunnel-rush", "uno", "valorant", "vex", "wheely", "wordle", "worlds-hardest-game", "zelda", "zombs-royale"
+];
 
+const MANUAL_GAMES = REAL_GAME_SLUGS.map(slug => ({
+  title: slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+  url: `https://3kh0.github.io/projects/${slug}/`,
+  icon: `https://3kh0.github.io/projects/${slug}/${slug}.png`
+}));
+
+// ==================== UTILITY FUNCTIONS ====================
 function formatTime(date) {
   return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
 }
@@ -499,9 +463,9 @@ function formatTime(date) {
 function getEmbedUrl(source, data) {
   const { imdbId, tmdbId, type, season, episode } = data;
   switch (source.name) {
+    case 'dulo':
     case 'flystream':
     case 'cinera':
-    case 'dulo':
       if (type === 'movie') return source.base + 'movie/' + imdbId;
       else return source.base + 'tv/' + imdbId + '/' + season + '/' + episode;
     case 'vidsrc.me':
@@ -524,6 +488,18 @@ function getEmbedUrl(source, data) {
   }
 }
 
+function openPlayer(url) {
+  const modal = document.getElementById('playerModal');
+  const iframe = document.getElementById('playerFrame');
+  iframe.src = url;
+  modal.style.display = 'flex';
+}
+
+function closePlayer() {
+  document.getElementById('playerModal').style.display = 'none';
+  document.getElementById('playerFrame').src = '';
+}
+
 // ==================== CLOCK ====================
 function updateClock() {
   document.getElementById('clockDisplay').textContent = formatTime(new Date());
@@ -538,15 +514,13 @@ document.querySelectorAll('.tab').forEach(tab => {
     document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
     tab.classList.add('active');
     document.getElementById(tab.dataset.tab).classList.add('active');
-    // Lazy load content when tab activated
-    if (tab.dataset.tab === 'games' && !document.getElementById('gameGrid').children.length) loadGames();
-    if (tab.dataset.tab === 'movies' && !document.getElementById('movieGrid').children.length) loadMovies();
-    if (tab.dataset.tab === 'shows' && !document.getElementById('showGrid').children.length) loadShows();
-    if (tab.dataset.tab === 'anime' && !document.getElementById('animeGrid').children.length) loadAnime();
+    if (tab.dataset.tab === 'games' && document.getElementById('gameGrid').children.length === 0) loadGames();
+    if (tab.dataset.tab === 'tv' && document.getElementById('tvGrid').children.length === 0) loadTV();
+    if (tab.dataset.tab === 'youtube' && document.getElementById('popularVideos').children.length === 0) loadPopularVideos();
   });
 });
 
-// ==================== GAMES ====================
+// ==================== GAMES LOADING ====================
 async function loadGames() {
   const grid = document.getElementById('gameGrid');
   grid.innerHTML = '<div class="loading"><div class="spinner"></div>Loading games...</div>';
@@ -554,27 +528,32 @@ async function loadGames() {
     const res = await fetch(GAMES_JSON_URL);
     if (!res.ok) throw new Error('Failed to fetch games');
     games = await res.json();
-    renderGames(games.slice(0, 100)); // render first 100 for performance
-    if (games.length > 100) {
-      document.getElementById('gameLoadMore').style.display = 'flex';
-      document.getElementById('gameLoadMore').onclick = () => renderGames(games.slice(100));
-    }
+    renderGames(games);
   } catch(e) {
-    grid.innerHTML = '<div class="loading">Failed to load games.</div>';
+    console.warn('Fetch failed, using manual real games list');
+    games = MANUAL_GAMES;
+    renderGames(games);
   }
 }
 
 function renderGames(list) {
   const grid = document.getElementById('gameGrid');
+  grid.innerHTML = '';
   list.forEach(game => {
     const card = document.createElement('div');
     card.className = 'card';
+    const iconUrl = game.icon || `https://3kh0.github.io/projects/${game.url.split('/').filter(Boolean).pop()}/${game.url.split('/').filter(Boolean).pop()}.png`;
     card.innerHTML = `
-      <div class="poster" style="display:flex; align-items:center; justify-content:center; background:#1e1e28;">
-        <svg width="50" height="50" viewBox="0 0 24 24" fill="currentColor" style="opacity:0.6;"><path d="M7.97 16.97L6.18 15.18C4.34 17.02 3.5 18.5 3.5 19.5C3.5 20.88 4.62 22 6 22C7 22 8.48 21.16 10.32 19.32L8.53 17.53C8.21 17.21 7.71 17 7.25 17C7 17 7 17 7.97 16.97M10 2C9.45 2 9 2.45 9 3V5H15V3C15 2.45 14.55 2 14 2H10M6 6C4.34 6 3 7.34 3 9V13C3 14.66 4.34 16 6 16H18C19.66 16 21 14.66 21 13V9C21 7.34 19.66 6 18 6H6M6 8H18V14H6V8M14 10V12H16V10H14M15.5 20.5C16.88 20.5 18 19.38 18 18C18 17 17.16 15.48 15.32 13.64L13.53 15.43C15.69 17.58 16.5 18.5 16.5 19C16.5 19.28 16.28 19.5 16 19.5C15.5 19.5 14.5 18.66 12.64 16.82L10.85 18.61C12.71 20.47 14.21 21.5 15.5 21.5M15.5 21.5C17.43 21.5 19 19.93 19 18C19 16.9 18.1 15.61 16.5 14.11C14.9 15.61 14 16.9 14 18C14 19.38 15.12 20.5 16.5 20.5"/></svg>
+      <div class="poster">
+        <img src="${iconUrl}" alt="${game.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="fallback-icon" style="display:none;">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor" style="opacity:0.6;"><path d="M7.97 16.97L6.18 15.18C4.34 17.02 3.5 18.5 3.5 19.5C3.5 20.88 4.62 22 6 22C7 22 8.48 21.16 10.32 19.32L8.53 17.53C8.21 17.21 7.71 17 7.25 17C7 17 7 17 7.97 16.97M10 2C9.45 2 9 2.45 9 3V5H15V3C15 2.45 14.55 2 14 2H10M6 6C4.34 6 3 7.34 3 9V13C3 14.66 4.34 16 6 16H18C19.66 16 21 14.66 21 13V9C21 7.34 19.66 6 18 6H6M6 8H18V14H6V8M14 10V12H16V10H14M15.5 20.5C16.88 20.5 18 19.38 18 18C18 17 17.16 15.48 15.32 13.64L13.53 15.43C15.69 17.58 16.5 18.5 16.5 19C16.5 19.28 16.28 19.5 16 19.5C15.5 19.5 14.5 18.66 12.64 16.82L10.85 18.61C12.71 20.47 14.21 21.5 15.5 21.5M15.5 21.5C17.43 21.5 19 19.93 19 18C19 16.9 18.1 15.61 16.5 14.11C14.9 15.61 14 16.9 14 18C14 19.38 15.12 20.5 16.5 20.5"/></svg>
+        </div>
       </div>
       <h3>${game.title}</h3>
-      <button onclick="playGame('${game.url}')">Play</button>
+      <button class="play-btn" onclick="playGame('${game.url}')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
     `;
     grid.appendChild(card);
   });
@@ -584,139 +563,79 @@ function playGame(url) {
   openPlayer(url);
 }
 
-// ==================== MOVIES ====================
-async function loadMovies() {
-  const grid = document.getElementById('movieGrid');
-  grid.innerHTML = '<div class="loading"><div class="spinner"></div>Loading movies...</div>';
+// ==================== TV LOADING ====================
+async function loadTV() {
+  const grid = document.getElementById('tvGrid');
+  grid.innerHTML = '<div class="loading"><div class="spinner"></div>Loading TV...</div>';
   try {
-    const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_API_KEY}&page=${currentMoviePage}`);
-    const data = await res.json();
-    movies = data.results;
-    renderMovies(movies);
-  } catch(e) {
-    grid.innerHTML = '<div class="loading">Failed to load movies.</div>';
-  }
+    const movieRes = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_API_KEY}&page=1`);
+    const movieData = await movieRes.json();
+    allTVItems = allTVItems.concat(movieData.results.map(m => ({...m, media_type: 'movie'})));
+  } catch(e) { console.warn('Failed to load movies', e); }
+  try {
+    const tvRes = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${TMDB_API_KEY}&page=1`);
+    const tvData = await tvRes.json();
+    allTVItems = allTVItems.concat(tvData.results.map(s => ({...s, media_type: 'tv'})));
+  } catch(e) { console.warn('Failed to load shows', e); }
+  try {
+    const animeRes = await fetch(`https://api.jikan.moe/v4/top/anime?page=1&limit=25`);
+    const animeData = await animeRes.json();
+    allTVItems = allTVItems.concat(animeData.data.map(a => ({...a, media_type: 'anime'})));
+  } catch(e) { console.warn('Failed to load anime', e); }
+
+  filteredTVItems = allTVItems;
+  renderTV(filteredTVItems);
 }
 
-function renderMovies(movieList) {
-  const grid = document.getElementById('movieGrid');
+function renderTV(list) {
+  const grid = document.getElementById('tvGrid');
   grid.innerHTML = '';
-  movieList.forEach(movie => {
-    const poster = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '';
+  list.forEach(item => {
+    let title = '', poster = '', id = '', type = '';
+    let imdbId = '', year = '';
+    if (item.media_type === 'movie') {
+      title = item.title; poster = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '';
+      id = item.id; type = 'movie'; imdbId = item.imdb_id || ''; year = item.release_date ? item.release_date.substring(0,4) : '';
+    } else if (item.media_type === 'tv') {
+      title = item.name; poster = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '';
+      id = item.id; type = 'tv'; imdbId = item.imdb_id || ''; year = item.first_air_date ? item.first_air_date.substring(0,4) : '';
+    } else if (item.media_type === 'anime') {
+      title = item.title_english || item.title; poster = item.images?.jpg?.image_url || '';
+      id = item.mal_id; type = 'anime'; imdbId = ''; year = item.year || '';
+    }
     const card = document.createElement('div');
     card.className = 'card';
+    card.dataset.type = item.media_type;
     card.innerHTML = `
-      <div class="poster">${poster ? `<img src="${poster}" alt="${movie.title}" loading="lazy">` : '<div class="fallback-icon">🎬</div>'}</div>
-      <h3>${movie.title}</h3>
-      <div class="meta">${movie.release_date || ''}</div>
-      <button onclick="playMovie('${movie.id}', 'movie', '${movie.title}', '${poster}', '${movie.overview || ''}', '${movie.imdb_id || ''}', null)">Play</button>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-// ==================== SHOWS ====================
-async function loadShows() {
-  const grid = document.getElementById('showGrid');
-  grid.innerHTML = '<div class="loading"><div class="spinner"></div>Loading shows...</div>';
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${TMDB_API_KEY}&page=${currentShowPage}`);
-    const data = await res.json();
-    shows = data.results;
-    renderShows(shows);
-  } catch(e) {
-    grid.innerHTML = '<div class="loading">Failed to load shows.</div>';
-  }
-}
-
-function renderShows(showList) {
-  const grid = document.getElementById('showGrid');
-  grid.innerHTML = '';
-  showList.forEach(show => {
-    const poster = show.poster_path ? `https://image.tmdb.org/t/p/w500${show.poster_path}` : '';
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <div class="poster">${poster ? `<img src="${poster}" alt="${show.name}" loading="lazy">` : '<div class="fallback-icon">📺</div>'}</div>
-      <h3>${show.name}</h3>
-      <div class="meta">${show.first_air_date || ''}</div>
-      <button onclick="playShow('${show.id}', '${show.name}', '${poster}', '${show.overview || ''}', '${show.imdb_id || ''}')">Play</button>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-// ==================== ANIME ====================
-async function loadAnime() {
-  const grid = document.getElementById('animeGrid');
-  grid.innerHTML = '<div class="loading"><div class="spinner"></div>Loading anime...</div>';
-  try {
-    const res = await fetch(`https://api.jikan.moe/v4/top/anime?page=${currentAnimePage}&limit=25`);
-    const data = await res.json();
-    anime = data.data;
-    renderAnime(anime);
-  } catch(e) {
-    grid.innerHTML = '<div class="loading">Failed to load anime.</div>';
-  }
-}
-
-function renderAnime(animeList) {
-  const grid = document.getElementById('animeGrid');
-  grid.innerHTML = '';
-  animeList.forEach(item => {
-    const poster = item.images?.jpg?.image_url || '';
-    const title = item.title_english || item.title;
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <div class="poster">${poster ? `<img src="${poster}" alt="${title}" loading="lazy">` : '<div class="fallback-icon">🌸</div>'}</div>
+      <div class="poster">${poster ? `<img src="${poster}" alt="${title}" loading="lazy">` : '<div class="fallback-icon"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg></div>'}</div>
       <h3>${title}</h3>
-      <div class="meta">${item.score || ''}</div>
-      <button onclick="playAnime('${item.mal_id}', '${title}', '${poster}', '${item.synopsis || ''}')">Play</button>
+      <div class="meta">${year}</div>
+      <button class="play-btn" onclick="playTVItem('${type}', '${id}', '${imdbId}')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
     `;
     grid.appendChild(card);
   });
 }
 
-// ==================== PLAYBACK ====================
-function openPlayer(url) {
-  const modal = document.getElementById('playerModal');
-  const iframe = document.getElementById('playerFrame');
-  iframe.src = url;
-  modal.style.display = 'flex';
-}
-
-function closePlayer() {
-  document.getElementById('playerModal').style.display = 'none';
-  document.getElementById('playerFrame').src = '';
-}
-
-// Movie/Show/Anime playback with fallback
-function playMovie(tmdbId, type, title, poster, overview, imdbId) {
-  // For TMDB movies, we often have imdb_id; if not, use tmdb id for some sources.
-  const data = { tmdbId, imdbId: imdbId || '', type: 'movie', season: null, episode: null };
-  trySources(data, title);
-}
-
-function playShow(tmdbId, title, poster, overview, imdbId) {
-  const season = prompt('Enter season number:');
-  const episode = prompt('Enter episode number:');
-  if (!season || !episode) return;
-  const data = { tmdbId, imdbId: imdbId || '', type: 'tv', season, episode };
-  trySources(data, title);
-}
-
-function playAnime(malId, title, poster, synopsis) {
-  // Anime often not on TMDB; we'll try id-based sources with malId as imdbId
-  const data = { tmdbId: malId, imdbId: 'tt' + malId, type: 'movie', season: null, episode: null };
-  trySources(data, title);
+function playTVItem(type, id, imdbId) {
+  if (type === 'tv') {
+    const season = prompt('Enter season number:');
+    const episode = prompt('Enter episode number:');
+    if (!season || !episode) return;
+    const data = { tmdbId: id, imdbId: imdbId, type: 'tv', season, episode };
+    trySources(data, '');
+  } else {
+    const data = { tmdbId: id, imdbId: imdbId, type: 'movie', season: null, episode: null };
+    trySources(data, '');
+  }
 }
 
 function trySources(data, title) {
   let sourceIndex = 0;
   const iframe = document.getElementById('playerFrame');
-  openPlayer(''); // open modal blank first
-  iframe.onload = null; // clear previous
+  openPlayer('');
+  iframe.onload = null;
   iframe.onerror = null;
 
   function attemptNext() {
@@ -729,7 +648,6 @@ function trySources(data, title) {
     let url = getEmbedUrl(source, data);
     console.log(`Trying source ${source.name}: ${url}`);
     iframe.onload = () => {
-      // Check if iframe actually loaded content (not blank/error)
       setTimeout(() => {
         try {
           const doc = iframe.contentDocument || iframe.contentWindow.document;
@@ -751,14 +669,115 @@ function trySources(data, title) {
   attemptNext();
 }
 
-// ==================== YOUTUBE ====================
+// TV filter
+function filterTV() {
+  const filter = document.getElementById('tvFilter').value;
+  if (filter === 'all') {
+    filteredTVItems = allTVItems;
+  } else {
+    filteredTVItems = allTVItems.filter(item => item.media_type === filter);
+  }
+  renderTV(filteredTVItems);
+}
+
+// ==================== PROXY (DuckDuckGo) ====================
+function navigateProxy() {
+  const query = document.getElementById('proxyUrl').value.trim();
+  if (!query) return;
+  let finalUrl;
+  if (query.startsWith('http://') || query.startsWith('https://')) {
+    finalUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(query)}`;
+  } else {
+    finalUrl = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
+  }
+  const container = document.getElementById('proxyFrameContainer');
+  container.style.display = 'block';
+  document.getElementById('proxyFrame').src = finalUrl;
+}
+
+// ==================== YOUTUBE (using YouTube Data API v3) ====================
+function getYouTubeKey() {
+  return YOUTUBE_API_KEY !== 'YOUR_YOUTUBE_API_KEY_HERE' ? YOUTUBE_API_KEY : '';
+}
+
+async function loadPopularVideos() {
+  const key = getYouTubeKey();
+  const videosContainer = document.getElementById('popularVideos');
+  const shortsContainer = document.getElementById('popularShorts');
+  if (!key) {
+    videosContainer.innerHTML = '<div class="loading">Please set your YouTube API key in the code (YOUTUBE_API_KEY constant).</div>';
+    shortsContainer.innerHTML = '';
+    return;
+  }
+  videosContainer.innerHTML = '<div class="loading"><div class="spinner"></div>Loading popular videos...</div>';
+  shortsContainer.innerHTML = '<div class="loading"><div class="spinner"></div>Loading popular shorts...</div>';
+  try {
+    const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&maxResults=50&key=${key}`);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const longForm = [];
+    const shorts = [];
+    data.items.forEach(video => {
+      const duration = video.contentDetails.duration;
+      // Simple ISO8601 duration parse for seconds
+      const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+      const hours = parseInt(match[1] || '0');
+      const minutes = parseInt(match[2] || '0');
+      const seconds = parseInt(match[3] || '0');
+      const totalSeconds = hours*3600 + minutes*60 + seconds;
+      if (totalSeconds <= 60) shorts.push(video);
+      else longForm.push(video);
+    });
+    // Render long-form
+    videosContainer.innerHTML = '';
+    longForm.forEach(video => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="poster"><img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}" loading="lazy"></div>
+        <h3>${video.snippet.title}</h3>
+        <div class="meta">${video.snippet.channelTitle}</div>
+        <button class="play-btn" onclick="openPlayer('https://www.youtube.com/embed/${video.id}')">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      `;
+      videosContainer.appendChild(card);
+    });
+    // Render shorts
+    shortsContainer.innerHTML = '';
+    shorts.forEach(video => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="poster" style="aspect-ratio:9/16;"><img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}" loading="lazy"></div>
+        <h3>${video.snippet.title}</h3>
+        <div class="meta">${video.snippet.channelTitle}</div>
+        <button class="play-btn" onclick="openPlayer('https://www.youtube.com/embed/${video.id}')">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      `;
+      shortsContainer.appendChild(card);
+    });
+    if (longForm.length === 0) videosContainer.innerHTML = '<div class="loading">No long-form videos found.</div>';
+    if (shorts.length === 0) shortsContainer.innerHTML = '<div class="loading">No shorts found.</div>';
+  } catch(e) {
+    videosContainer.innerHTML = `<div class="loading">Failed to load popular videos: ${e.message}</div>`;
+    shortsContainer.innerHTML = '';
+  }
+}
+
 async function searchYouTube() {
   const query = document.getElementById('ytSearch').value.trim();
   if (!query) return;
   const resultsDiv = document.getElementById('ytResults');
   resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div>Searching...</div>';
+  const key = getYouTubeKey();
+  if (!key) {
+    resultsDiv.innerHTML = '<div class="loading">Please set your YouTube API key in the code.</div>';
+    return;
+  }
   try {
-    // Check if it's a URL
+    // If direct URL, play it
     if (query.includes('youtube.com/watch') || query.includes('youtu.be/')) {
       const videoId = extractYouTubeId(query);
       if (videoId) {
@@ -767,24 +786,48 @@ async function searchYouTube() {
         return;
       }
     }
-    const res = await fetch(`${INVIDIOUS_API}/search?q=${encodeURIComponent(query)}`);
-    const videos = await res.json();
+    const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${encodeURIComponent(query)}&type=video,channel&key=${key}`);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
     resultsDiv.innerHTML = '';
-    videos.forEach(video => {
-      if (video.type !== 'video') return;
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <div class="poster">${video.videoThumbnails?.[0]?.url ? `<img src="${video.videoThumbnails[0].url}" alt="${video.title}" loading="lazy">` : '<div class="fallback-icon">▶️</div>'}</div>
-        <h3>${video.title}</h3>
-        <div class="meta">${video.author} · ${video.publishedText || ''}</div>
-        <button onclick="openPlayer('https://www.youtube.com/embed/${video.videoId}')">Watch</button>
-      `;
-      resultsDiv.appendChild(card);
+    data.items.forEach(item => {
+      if (item.id.kind === 'youtube#video') {
+        const videoId = item.id.videoId;
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="poster"><img src="${item.snippet.thumbnails.medium.url}" alt="${item.snippet.title}" loading="lazy"></div>
+          <h3>${item.snippet.title}</h3>
+          <div class="meta">${item.snippet.channelTitle}</div>
+          <button class="play-btn" onclick="openPlayer('https://www.youtube.com/embed/${videoId}')">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        `;
+        resultsDiv.appendChild(card);
+      } else if (item.id.kind === 'youtube#channel') {
+        const channelId = item.id.channelId;
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="poster" style="aspect-ratio:1/1; border-radius:50%; overflow:hidden;"><img src="${item.snippet.thumbnails.default.url}" alt="${item.snippet.channelTitle}" loading="lazy"></div>
+          <h3>${item.snippet.channelTitle}</h3>
+          <div class="meta">Channel</div>
+          <button class="play-btn" onclick="openChannel('${channelId}')">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          </button>
+        `;
+        resultsDiv.appendChild(card);
+      }
     });
+    if (data.items.length === 0) resultsDiv.innerHTML = '<div class="loading">No results found.</div>';
   } catch(e) {
-    resultsDiv.innerHTML = '<div class="loading">Failed to search YouTube.</div>';
+    resultsDiv.innerHTML = `<div class="loading">Search failed: ${e.message}</div>`;
   }
+}
+
+function openChannel(channelId) {
+  // YouTube channel pages typically can't be embedded in iframes, so open in new tab.
+  window.open(`https://www.youtube.com/channel/${channelId}`, '_blank');
 }
 
 function extractYouTubeId(url) {
@@ -792,47 +835,82 @@ function extractYouTubeId(url) {
   return match ? match[1] : null;
 }
 
-// ==================== PROXY ====================
-function navigateProxy() {
-  const url = document.getElementById('proxyUrl').value.trim();
-  if (!url) return;
-  const service = document.getElementById('proxyService').value;
-  let proxyUrl = '';
-  switch(service) {
-    case 'allorigins':
-      proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-      break;
-    case 'corsproxy':
-      proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url)}`;
-      break;
-    case 'whateverorigin':
-      proxyUrl = `http://www.whateverorigin.org/get?url=${encodeURIComponent(url)}`;
-      break;
-    default:
-      proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+// ==================== AI ====================
+function sendAI() {
+  const input = document.getElementById('aiInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  const chatBox = document.getElementById('aiChatBox');
+  chatBox.innerHTML += `<div style="margin-bottom:0.5rem;"><strong style="color:var(--accent);">You:</strong> ${msg}</div>`;
+  input.value = '';
+  const reply = aiResponse(msg);
+  chatBox.innerHTML += `<div style="margin-bottom:0.5rem;"><strong style="color:var(--success);">AI:</strong> ${reply}</div>`;
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function aiResponse(msg) {
+  const lower = msg.toLowerCase();
+  // Greetings
+  if (/(hello|hi|hey|greetings)/.test(lower)) return "Hello! I'm Novus AI, your virtual assistant. How can I help you today?";
+  // Essays
+  if (lower.includes('essay') || lower.includes('write an essay')) {
+    const topic = lower.replace(/.*essay (on|about)?\s*/, '').replace(/^.*write\s*/,'').trim();
+    if (topic) return `Here's a short essay on ${topic}:\n\n${topic} is a subject of great importance in today's world. Throughout history, many scholars have debated the various aspects of ${topic}, each contributing unique perspectives. The significance of ${topic} cannot be overstated, as it influences numerous areas of our lives, from personal development to societal progress. In conclusion, ${topic} remains a critical area of study that continues to evolve and shape our understanding of the world.`;
+    return "Please specify a topic for the essay. For example: 'Write an essay about climate change.'";
   }
-  const container = document.getElementById('proxyFrameContainer');
-  container.style.display = 'block';
-  document.getElementById('proxyFrame').src = proxyUrl;
+  // Math
+  if (lower.includes('math') || lower.includes('solve') || lower.includes('calculate')) {
+    const expr = lower.replace(/.*?(solve|calculate|what is)\s*/,'').replace(/[?]/g,'').trim();
+    if (expr) {
+      try {
+        const result = Function(`"use strict"; return (${expr})`)();
+        return `The result of ${expr} is ${result}.`;
+      } catch(e) {
+        return "I couldn't compute that. Please provide a valid mathematical expression.";
+      }
+    }
+    return "I can help with math! Try asking something like 'Solve 2+2' or 'What is 5*7?'";
+  }
+  // Algebra
+  if (lower.includes('algebra')) {
+    return "Algebra is a branch of mathematics dealing with symbols and the rules for manipulating those symbols. For example, solving for x in 2x+3=7 gives x=2. Ask me a specific algebra problem!";
+  }
+  // Geometry
+  if (lower.includes('geometry')) {
+    return "Geometry deals with shapes, sizes, relative positions of figures, and properties of space. For example, the area of a circle is πr². Try asking about specific shapes or formulas!";
+  }
+  // Games
+  if (lower.includes('game')) return "Check out the Games tab! We have over 1000 games to play.";
+  // Movies/TV
+  if (lower.includes('movie') || lower.includes('tv') || lower.includes('show') || lower.includes('anime')) return "The TV tab has movies, shows, and anime. Use the filter to browse by type.";
+  // YouTube
+  if (lower.includes('youtube') || lower.includes('video')) return "Use the YouTube tab to search for videos and channels.";
+  // Proxy
+  if (lower.includes('proxy') || lower.includes('browse') || lower.includes('web')) return "The Proxy tab lets you browse the web using DuckDuckGo or direct URLs.";
+  // Theme
+  if (lower.includes('theme') || lower.includes('color')) return "You can change the theme in Settings. There are many options like Dark, Light, Cherry, Forest, and more!";
+  // Time
+  if (lower.includes('time')) return "The current time is displayed at the top of the page in military format.";
+  // Help
+  if (lower.includes('help')) return "I can help with essays, math, algebra, geometry, and general questions. Just ask!";
+  // Default
+  return "I'm a simple AI. I can't answer that yet, but I'm learning. Try asking about essays, math, algebra, geometry, games, TV, YouTube, proxy, or themes.";
 }
 
 // ==================== SEARCH ====================
 function globalSearch() {
   const q = document.getElementById('searchInput').value.toLowerCase().trim();
   if (!q) return;
-  // Search games
   const gameCards = document.querySelectorAll('#gameGrid .card');
   gameCards.forEach(c => {
     const title = c.querySelector('h3').textContent.toLowerCase();
     c.style.display = title.includes(q) ? 'flex' : 'none';
   });
-  // Search movies
-  const movieCards = document.querySelectorAll('#movieGrid .card, #showGrid .card, #animeGrid .card');
-  movieCards.forEach(c => {
+  const tvCards = document.querySelectorAll('#tvGrid .card');
+  tvCards.forEach(c => {
     const title = c.querySelector('h3').textContent.toLowerCase();
     c.style.display = title.includes(q) ? 'flex' : 'none';
   });
-  // If on movies/shows/anime tab and no results, maybe load more? Not needed.
 }
 
 // ==================== THEMES ====================
@@ -860,13 +938,11 @@ function setTheme(themeName) {
   root.style.setProperty('--accent-hover', t.accent);
   root.style.setProperty('--border', t.border);
   localStorage.setItem('theme', themeName);
-  // Update active button
   document.querySelectorAll('.theme-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.theme === themeName);
   });
 }
 
-// Custom background
 function setCustomVideo() {
   const url = document.getElementById('customVideoUrl').value.trim();
   if (!url) return;
@@ -890,27 +966,23 @@ function setCustomImage() {
   }
 }
 
-// ==================== INITIALIZATION ====================
-// Load saved theme
+// ==================== INIT ====================
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) setTheme(savedTheme);
 else setTheme('dark');
 
-// Load saved search engine
 const savedEngine = localStorage.getItem('searchEngine');
 if (savedEngine) document.getElementById('searchEngine').value = savedEngine;
 
-// Theme buttons event
 document.querySelectorAll('.theme-btn').forEach(btn => {
   btn.addEventListener('click', () => setTheme(btn.dataset.theme));
 });
 
-// Search engine change
 document.getElementById('searchEngine').addEventListener('change', function() {
   localStorage.setItem('searchEngine', this.value);
 });
 
-// Load games initially
+// Initial load
 loadGames();
 </script>
 </body>
