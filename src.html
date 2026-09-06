@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NovusOS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap');
+:root {
+  --bg: #0a0a0f;
+  --card-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.15);
+  --text: #ffffff;
+  --accent: #007aff;
+  --danger: #ff375f;
+  --success: #30d158;
+  --radius: 20px;
+}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Noto Serif SC', -apple-system, sans-serif; }
+body {
+  background: radial-gradient(circle at 20% 30%, #1a1a2e, #0a0a0f);
+  min-height:100vh;
+  color: var(--text);
+  padding:20px;
+}
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border:1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+.container { max-width:1400px; margin:0 auto; }
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 30px; margin-bottom:30px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 30px;
+  border:1px solid var(--glass-border);
+}
+h1 {
+  font-size:2.5em; font-weight:700;
+  background: linear-gradient(135deg, #ffffff, #a0a0a0);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  letter-spacing:1px;
+}
+.game-count {
+  font-size:16px; color:var(--success);
+  background:rgba(48,209,88,0.1);
+  padding:8px 16px; border-radius:20px;
+  border:1px solid var(--success);
+}
+.search-bar {
+  display:flex; gap:10px; margin-bottom:30px;
+}
+.search-bar input {
+  flex:1; padding:15px 20px; border-radius:30px;
+  border:1px solid var(--glass-border); background:rgba(255,255,255,0.05);
+  color:#fff; font-size:16px; outline:none;
+}
+.search-bar button {
+  padding:15px 25px; border-radius:30px; border:none;
+  background:var(--accent); color:#fff; font-weight:bold; cursor:pointer;
+}
+.tabs {
+  display:flex; gap:15px; margin-bottom:25px; flex-wrap:wrap;
+}
+.tab {
+  padding:12px 24px; border-radius:30px; cursor:pointer;
+  background:rgba(255,255,255,0.05); border:1px solid var(--glass-border);
+  transition:0.2s;
+}
+.tab.active { background:var(--accent); border-color:var(--accent); }
+.tab:hover { background:rgba(255,255,255,0.1); }
+.content-section { display:none; }
+.content-section.active { display:block; }
+.grid {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr));
+  gap:15px;
+}
+.game-card, .movie-card {
+  background:rgba(255,255,255,0.03); border-radius:15px;
+  padding:12px; text-align:center; border:1px solid var(--glass-border);
+  transition:0.2s; cursor:pointer;
+}
+.game-card:hover, .movie-card:hover { transform:translateY(-5px); background:rgba(255,255,255,0.08); }
+.game-card iframe {
+  width:100%; height:120px; border-radius:8px; border:none; margin-bottom:8px;
+  pointer-events:none;
+}
+.game-card h3 { font-size:12px; margin-top:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.play-btn {
+  margin-top:8px; padding:6px 12px; border-radius:8px; background:var(--accent);
+  color:#fff; border:none; cursor:pointer; font-size:12px; width:100%;
+}
+.iframe-wrapper {
+  width:100%; height:70vh; border-radius:15px; overflow:hidden;
+  background:#000; margin-top:20px;
+}
+.iframe-wrapper iframe { width:100%; height:100%; border:none; }
+.loading { text-align:center; padding:20px; opacity:0.7; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>NovusOS</h1>
+    <div style="display:flex; gap:15px; align-items:center;">
+      <span class="game-count" id="gameCount">加载游戏...</span>
+      <span id="clock" style="font-size:18px;"></span>
+      <span>📶</span>
+    </div>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="搜索游戏或电影...">
+    <button onclick="search()">搜索</button>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="games">🎮 游戏</div>
+    <div class="tab" data-tab="movies">🎬 电影/动漫</div>
+    <div class="tab" data-tab="youtube">▶️ YouTube代理</div>
+    <div class="tab" data-tab="proxy">🌐 代理搜索</div>
+  </div>
+
+  <div id="games" class="content-section active">
+    <div class="grid" id="gameGrid"></div>
+  </div>
+
+  <div id="movies" class="content-section">
+    <div class="grid" id="movieGrid"></div>
+    <div class="iframe-wrapper" id="moviePlayerWrapper" style="display:none;">
+      <iframe id="moviePlayer" src="" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div id="youtube" class="content-section">
+    <div class="glass" style="padding:20px; text-align:center;">
+      <p>YouTube 代理已加载，请输入视频链接或搜索。</p>
+      <input type="text" id="ytUrl" placeholder="粘贴YouTube链接或搜索关键词" style="width:60%; padding:12px; border-radius:20px; border:1px solid #333; background:#111; color:#fff;">
+      <button onclick="loadYouTube()" style="margin-left:10px; padding:12px 20px; border-radius:20px; background:#ff0000; color:#fff; border:none; cursor:pointer;">加载</button>
+      <div class="iframe-wrapper" style="height:60vh; margin-top:20px;">
+        <iframe id="ytPlayer" src="" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div id="proxy" class="content-section">
+    <div class="glass" style="padding:20px;">
+      <h2>隐秘代理搜索引擎</h2>
+      <p>输入网址，通过我们的服务器代理访问。</p>
+      <div style="display:flex; gap:10px; margin-top:20px;">
+        <input type="text" id="proxyUrl" placeholder="输入完整URL (https://...)" style="flex:1; padding:12px; border-radius:20px; border:1px solid #333; background:#111; color:#fff;">
+        <button onclick="proxyNavigate()" style="padding:12px 20px; border-radius:20px; background:var(--accent); color:#fff; border:none; cursor:pointer;">前往</button>
+      </div>
+      <div class="iframe-wrapper" style="height:60vh; margin-top:20px;">
+        <iframe id="proxyFrame" src="" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- YouTube Proxy Script -->
+<script src="https://cdn.jsdelivr.net/gh/unblockedgames99x-code/dshsfdghaswerweq@b3c7a1454a6626af26f0fccd3194503a56803f73/neo-os/neo-apps.js?v=20260901-youtube-proxy-app-v1"></script>
+
+<script>
+// ================== REAL DATA SOURCES ==================
+const GAMES_JSON_URL = 'https://raw.githubusercontent.com/3kh0/3kh0.github.io/main/games.json';
+
+let games = [];
+let movies = [
+  { title: 'Demon Slayer', type: 'anime', id: 'demon-slayer' },
+  { title: 'One Piece', type: 'anime', id: 'one-piece' },
+  { title: 'Naruto', type: 'anime', id: 'naruto' },
+  { title: 'Jujutsu Kaisen', type: 'anime', id: 'jujutsu-kaisen' },
+  { title: 'Attack on Titan', type: 'anime', id: 'attack-on-titan' },
+  { title: 'Interstellar', type: 'movie', id: 'interstellar' },
+  { title: 'Inception', type: 'movie', id: 'inception' },
+  { title: 'The Dark Knight', type: 'movie', id: 'the-dark-knight' },
+  { title: 'Spider-Man: No Way Home', type: 'movie', id: 'spider-man-no-way-home' },
+  { title: 'Dune', type: 'movie', id: 'dune' },
+  { title: 'Avengers: Endgame', type: 'movie', id: 'avengers-endgame' },
+  { title: 'Your Name', type: 'anime', id: 'your-name' },
+  { title: 'Spirited Away', type: 'anime', id: 'spirited-away' }
+];
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('zh-CN', {hour:'2-digit', minute:'2-digit'});
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ================== LOAD ALL GAMES ==================
+async function loadAllGames() {
+  const res = await fetch(GAMES_JSON_URL);
+  const allGames = await res.json();
+  document.getElementById('gameCount').textContent = `已加载 ${allGames.length} 款游戏`;
+  const grid = document.getElementById('gameGrid');
+  grid.innerHTML = '';
+  allGames.forEach(game => {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.innerHTML = `
+      <iframe src="${game.url}" loading="lazy" sandbox="allow-scripts allow-same-origin allow-pointer-lock"></iframe>
+      <h3>${game.title}</h3>
+      <button class="play-btn" onclick="window.open('${game.url}','_blank')">全屏</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderMovies() {
+  const grid = document.getElementById('movieGrid');
+  grid.innerHTML = '';
+  movies.forEach(movie => {
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+    card.innerHTML = `
+      <div style="height:120px; background:linear-gradient(45deg, #333, #555); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:30px;">🎬</div>
+      <h3>${movie.title}</h3>
+      <button class="play-btn" style="background:var(--danger);" onclick="playMovie('${movie.id}', '${movie.type}')">▶ 播放</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function playMovie(id, type) {
+  const embedUrl = `https://flystream.net/embed/${type}/${id}`;
+  const playerWrapper = document.getElementById('moviePlayerWrapper');
+  const player = document.getElementById('moviePlayer');
+  player.src = embedUrl;
+  playerWrapper.style.display = 'block';
+  playerWrapper.scrollIntoView({ behavior: 'smooth' });
+}
+
+function loadYouTube() {
+  const input = document.getElementById('ytUrl').value.trim();
+  if (!input) return;
+  let ytEmbed = '';
+  if (input.includes('youtube.com/watch') || input.includes('youtu.be/')) {
+    const match = input.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+    if (match) ytEmbed = `https://www.youtube.com/embed/${match[1]}`;
+  } else {
+    ytEmbed = `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(input)}`;
+  }
+  document.getElementById('ytPlayer').src = ytEmbed;
+}
+
+function proxyNavigate() {
+  const url = document.getElementById('proxyUrl').value.trim();
+  if (!url) return;
+  const proxied = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+  document.getElementById('proxyFrame').src = proxied;
+}
+
+function search() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  if (!q) { loadAllGames(); renderMovies(); return; }
+  const filteredGames = games.filter(g => g.title.toLowerCase().includes(q));
+  const grid = document.getElementById('gameGrid');
+  grid.innerHTML = '';
+  filteredGames.forEach(game => {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.innerHTML = `
+      <iframe src="${game.url}" loading="lazy" sandbox="allow-scripts allow-same-origin allow-pointer-lock"></iframe>
+      <h3>${game.title}</h3>
+      <button class="play-btn" onclick="window.open('${game.url}','_blank')">全屏</button>
+    `;
+    grid.appendChild(card);
+  });
+  const movieGrid = document.getElementById('movieGrid');
+  movieGrid.innerHTML = '';
+  const filteredMovies = movies.filter(m => m.title.toLowerCase().includes(q));
+  filteredMovies.forEach(movie => {
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+    card.innerHTML = `
+      <div style="height:120px; background:linear-gradient(45deg, #333, #555); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:30px;">🎬</div>
+      <h3>${movie.title}</h3>
+      <button class="play-btn" style="background:var(--danger);" onclick="playMovie('${movie.id}', '${movie.type}')">▶ 播放</button>
+    `;
+    movieGrid.appendChild(card);
+  });
+}
+
+// Initialize
+loadAllGames();
+renderMovies();
+</script>
+</body>
+</html>
